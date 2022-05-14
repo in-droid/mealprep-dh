@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as auth_login
 from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate
 
 def index(request):
     user = request.user
@@ -13,21 +15,26 @@ def index(request):
         'user': user
     }
 
-    print("WOOOOOOOOOOW " + user.username)
-
     return HttpResponse(template.render(context, request))
 
 
 def login(request):
     if request.method == 'POST':
-        redirect()
+        username = request.POST.get('username')
+        password = request.POST.get('psw')
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect(index)
+               
+        
+        return redirect('login')
 
     else:
-        template = loader.get_template('user/login.html')
-        context = {
-            'user': request
-        }
-        return HttpResponse(template.render(context, request))
+        return render(request, 'user/login.html')
+  
+        
 
 def register(request):
     if request.method == 'POST':
@@ -55,4 +62,4 @@ def register(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('')
+    return redirect(index)
