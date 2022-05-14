@@ -79,7 +79,7 @@ def scrapeRecipePage(URL, type):
                 quantity = 940 * quantity
                 measurement = 'g'
             quantity = round(quantity, 1)
-            ingredient = ingredientLI.contents[1]
+            ingredient = ingredientLI.contents[1].strip('\n')
             ingredientDict[ingredient] = (quantity, measurement)
 
     directions = soup.find('div', {'id': 'recipeDirectionsRoot'}).text.strip()
