@@ -7,8 +7,8 @@ class Foods(models.Model):
     # fid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
     volume = models.IntegerField()
-    calories = models.IntegerField(null=True)
-    protein = models.IntegerField(null=True)
+    calories = models.IntegerField(blank=True)
+    protein = models.IntegerField(blank=True)
 
     def __str__(self):
         return self.name
@@ -26,14 +26,14 @@ class User_Fridge(models.Model):
 
 class Recipes(models.Model):
     # fid = models.AutoField(primary_key=True)()
-    name = models.CharField(max_length=1024)
+    name = models.CharField(max_length=1024, unique=True)
     directions = models.CharField(max_length=1024)
     ingridients = models.CharField(max_length=1024)
     type = models.CharField(max_length=16)
-    time = models.IntegerField(null=True)
-    image = models.CharField(max_length=256, null=True)
+    time = models.IntegerField(blank=True)
+    image = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
-        return models.name
+        return self.name
 
 

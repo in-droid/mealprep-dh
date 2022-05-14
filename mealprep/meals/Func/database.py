@@ -15,7 +15,21 @@ class DataBase:
     # Returns all Uer_Fridge entries for specific user by UID (if uid is not found, returns None)
     def get_fridge(self, uid):
         try:
-            return User_Fridge.objects.filter(uid)
+            return User_Fridge.objects.filter(uid=uid)
+        except:
+            return None
+
+    # Return all food names from fridge for specific user ID
+    def get_food_names_from_fridge(self, uid):
+        try:
+            return [x.fid.name for x in User_Fridge.objects.filter(uid=uid)]
+        except:
+            return None
+
+    # Get ingridients for a Recipes ID
+    def get_ingridients(self, id):
+        try:
+            return  Recipes.objects.get(id=id).ingridients
         except:
             return None
 
