@@ -22,7 +22,13 @@ class DataBase:
     # Return all food names from fridge for specific user ID
     def get_food_names_from_fridge(self, uid):
         try:
-            return [x.fid.name for x in User_Fridge.objects.filter(uid=uid)]
+            return User_Fridge.objects.filter(uid=uid)
+        except:
+            return None
+
+    def get_food_for_id(self, fid):
+        try:
+            return Foods.objects.get(id=fid)
         except:
             return None
 
