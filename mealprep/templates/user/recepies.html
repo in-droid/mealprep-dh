@@ -34,6 +34,7 @@
 <body>
 
 
+
 <!-- TOP HEADER Start
     ================================================== -->
 	
@@ -56,32 +57,70 @@
 				<div class="col-md-2">
 					<div class="search-box">
 						<div class="input-group">
-					    	<input placeholder="Search Here" type="text" class="form-control" id="srch">
+					    	<input placeholder="Search Here" type="text" class="form-control">
 					      	<span class="input-group-btn">
-					        	<button class="btn btn-default" type="button" id="bt"></button>
+					        	<button class="btn btn-default" type="button"></button>
 					      	</span>
-							<ul id="list">
-							</ul>
 					    </div><!-- /.input-group -->
 					</div><!-- /.search-box -->
 				</div>
 			</div> <!-- End Of /.row -->
 		</div>	<!-- End Of /.Container -->
-    </section>
+
 	
-	<script type="text/javascript">
-		$("#srch").change(function() {
-		var value = $(this).val().toLowerCase();
-		$("#list li").each(function() {
-			var search = $(this).text().toLowerCase();
-			if (search.indexOf(value)>-1){
-				$(this).show();
-			} else {
-				$(this).hide()
-			}
-		});
-	});
-	</script>
+	<!-- MODAL Start
+    	================================================== -->
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		    	<div class="modal-content">
+		    		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        		<h4 class="modal-title" id="myModalLabel">Introduce Yourself</h4>
+		      		</div>
+			      	<div class="modal-body clearfix">
+
+						<a href="login.html" method="post" id="create-account_form" class="std">
+							<fieldset>
+								<h3>New here?</h3>
+								<div class="form_content clearfix">
+									
+									</p>
+									<p class="submit">
+										<button class="btn btn-primary">Create Your Account</button>
+									</p>
+								</div>
+							</fieldset>
+						</a>
+			      		<form action="" method="post" id="login_form" class="std">
+							<fieldset>
+								<h3>Already registered?</h3>
+								<div class="form_content clearfix">
+									<p class="text">
+									<label for="email">E-mail address</label>
+										<span><input placeholder="E-mail address" type="text" id="email" name="email" value="" class="account_input"></span>
+									</p>
+									<p class="text">
+									<label for="passwd">Password</label>
+										<span><input placeholder="Password" type="password" id="passwd" name="passwd" value="" class="account_input"></span>
+									</p>
+									<p class="lost_password">
+										<a href="#popab-password-reset" class="popab-password-link">Forgot your password?</a>
+									</p>
+									<p class="submit">
+										<button class="btn btn-success">Log in</button>
+									</p>
+								</div>
+							</fieldset>
+						</form>
+			      	</div>
+			      	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>	
+	</section>  <!-- End of /Section -->
 
 
 	<!-- LOGO Start
@@ -118,9 +157,9 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li ><a href="{% url 'index' %}">HOME</a></li>
-					<li class="active"><a href="{% url 'fridge' %">FRIŽIDER</a></li>
-					<li ><a href="{% url 'recepies' %}">RECIPES</a></li>	
+		        	<li ><a href="index.html">HOME</a></li>
+					<li><a href="products.html">FRIŽIDER</a></li>
+					<li class="active"><a href="#">RECIPES</a></li>	
 		        </ul> <!-- End of /.nav-main -->
 		    </div>	<!-- /.navbar-collapse -->
 		</div>	<!-- /.container-fluid -->
@@ -128,57 +167,134 @@
 
 
 
-
-	
-
-
-
-	<!-- PRODUCTS Start
+	<!-- Breadcrumbs Start
     ================================================== -->
 
-	<section id="shop">
+
+	<section id="blog">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9">
-					<div class="products-heading">
-						<h2>NEW PRODUCTS</h2>
-					</div>	<!-- End of /.Products-heading -->
-					<div class="product-grid">
-					    <ul>
-					        {% for item in fridge %}
-								<li>
-					            <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>{{item.name}}</h4>
-									</a>
-									<p class="price"> Caloreies:{{item.calories}}</p>
-									<p class="price">Protienin:  {{item.proteins}}</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-							{% endfor %}
-					    </ul>
-					</div>	<!-- End of /.products-grid -->
+				<div class="col-md-9 clearfix">
+					<ul class="blog-zone">
+					    <li>
+					        <div class="blog-icon">
+					        	<i class="fa  fa-pencil"></i>
+					        </div>
+					        <div class="blog-box">
+					        	<img src="images/blog-1.jpg" alt="">
+					            
+					            <div class="blog-post-body clearfix">
+						            <a href="blog-single.html">
+					            		<h2>Butternut Sage Scones</h2>
+						            </a>
+					            	<div class="blog-post-tag">
+						            	<div class="block">
+						            		<i class="fa fa-clock-o"></i>
+						            		<p>12 Jan,2014</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-user"></i>
+						            		<p>Admin</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-tags"></i>
+						            		<p>
+						            			<a href="">Food Culture</a>,
+						            			<a href="">Green Items</a>
+						            		</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-comments"></i>
+						            		<p>5 Comments</p>
+						            	</div>
+						            </div>
+						            <p>FOR THE BUTTERNUT SQUASH: Pierce a medium butternut squash all over with a fork or tip of a knife. Place on microwave-safe dish and cook on high for about ½ hour, turning every ten minutes or so, until soft and mushy. Cut squash down the middle. If it’s still hard in the middle, nuke it a little more. Scoop out seeds and pulp. Scoop out the soft squash, mash it a bit, and place in a mesh strainer over a bowl. Let drain for a couple hours, or overnight. Depending on the size of your butternut, you’ll probably have extra squash, as this recipe only uses ½ cup. Make soup with the rest. Or double the scone recipe. And make a little less soup.</p>
+						            <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
+								        <span>Read More</span>
+								    </a>
+					            </div>
+								<div class="blog-post-body clearfix">
+						            <a href="blog-single.html">
+					            		<h2>Lamb Burgers with Cilantro Yogurta</h2>
+						            </a>
+					            	<div class="blog-post-tag">
+						            	<div class="block">
+						            		<i class="fa fa-clock-o"></i>
+						            		<p>12 Jan,2014</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-user"></i>
+						            		<p>Admin</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-tags"></i>
+						            		<p>
+						            			<a href="">Food Culture</a>,
+						            			<a href="">Without gluten Items</a>
+						            		</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-comments"></i>
+						            		<p>7 Comments</p>
+						            	</div>
+						            </div>
+						            <p>These burgers are simple yet spot on. Naomi calls for ground lamb, which makes for a sumptuous burger requiring nothing more than a bit of salt and pepper. The tang of the cilantro yogurt sauce cuts the richness, keeping the lamb from tasting gamey. We shaved the garlic using a Microplane grater, which dispersed its bite evenly throughout the yogurt and provided a more intense garlic flavor - if you decide to do the same, keep in mind you will only need one clove of garlic. We also added a large pinch of salt to the yogurt and served the burgers on toasted hamburger buns.</p>
+						            <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
+								        <span>Read More</span>
+								    </a>
+					            </div>
+								<div class="blog-post-body clearfix">
+						            <a href="blog-single.html">
+					            		<h2>Tomato Rice (Tamatar Biryani)</h2>
+						            </a>
+					            	<div class="blog-post-tag">
+						            	<div class="block">
+						            		<i class="fa fa-clock-o"></i>
+						            		<p>12 Jan,2014</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-user"></i>
+						            		<p>Admin</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-tags"></i>
+						            		<p>
+						            			<a href="">Food Culture</a>,
+						            			<a href="">css/responsive.css Items</a>
+						            		</p>
+						            	</div>
+						            	<div class="block">
+						            		<i class="fa fa-comments"></i>
+						            		<p>8 Comments</p>
+						            	</div>
+						            </div>
+						            <p>In a medium bowl, place the rice. Fill the bowl halfway with water to cover the rice. Gently rub the grains through your fingers, without breaking them, to wash off any dust or light foreign objects (like loose husks), which will float to the surface. The water will become cloudy. Drain and repeat this process three or four times, until the water remains relatively clear; drain again. Fill the bowl halfway with cold water and let it sit at room temperature for 20 to 30 minutes, until the kernels soften. Drain one more time.</p>
+						            <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
+								        <span>Read More</span>
+								    </a>
+					            </div>
+					        </div>	<!-- End of /.blog-box -->
+					    </li>
+					    <li>
+					        <div class="blog-icon">
+					        	<i class="fa  fa-video-camera"></i>
+					        </div>
+
+					        
+					    </li>
+					  </ul>	<!-- End of /.blog-zone -->
 
 					<!-- Pagination -->
-
-					<div class="pagination-bottom">
-						<ul class="pagination">
-						  	<li class="disabled"><a href="#">&laquo;</a></li>
-						  	<li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
-						  	<li><a href="#">2</a></li>
-						  	<li><a href="#">3</a></li>
-						  	<li><a href="#">4</a></li>
-						  	<li><a href="#">»</a></li>
-						</ul>	<!-- End of /.pagination -->
-					</div>
+					 <ul class="pagination pull-right">
+					  	<li class="disabled"><a href="#">&laquo;</a></li>
+					  	<li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
+					  	<li><a href="#">2</a></li>
+					  	<li><a href="#">3</a></li>
+					  	<li><a href="#">4</a></li>
+					  	<li><a href="#">»</a></li>
+					</ul>	<!-- End of /.pagination -->
 				</div>	<!-- End of /.col-md-9 -->
+
 				<div class="col-md-3">
 					<div class="blog-sidebar">
 						<div class="block">
@@ -200,71 +316,31 @@
 									<i class="fa  fa-dot-circle-o"></i>
 									Salad
 								</a>
-
 							</div>
-						</div>
-						<div class="block">
-							<img src="images/food-ad.png" alt="">
-						</div>
-						<div class="block">
-							<h4>Latest Food Items</h4>
-							<ul class="media-list">
-							 	<li class="media">
-							    	<a class="pull-left" href="#">
-							      		<img class="media-object" src="images/post-img.png" alt="...">
-							    	</a>
-							    	<div class="media-body">
-							      		<a href="" class="media-heading">Lamb leg roast
-							      		<p>Lorem ipsum dolor sit amet.</p></a>
-							    	</div>
-							  	</li>
-							  	<li class="media">
-							    	<a class="pull-left" href="#">
-							      		<img class="media-object" src="images/post-img-2.png" alt="...">
-							    	</a>
-							    	<div class="media-body">
-							      		<a href="" class="media-heading"> Lamingtons
-							      		<p>Lorem ipsum dolor.</p></a>
-							    	</div>
-							  	</li>
-							  	<li class="media">
-							    	<a class="pull-left" href="#">
-							      		<img class="media-object" src="images/post-img-3.png" alt="...">
-							    	</a>
-							    	<div class="media-body">
-							      		<a href="" class="media-heading">
-							      		Anzac Salad
-							      		<p>Lorem ipsum dolor sit.</p>
-
-							      		</a>
-							    	</div>
-							  	</li>
-							  </ul>
-						</div>
+						</div>	<!-- End of /.block -->
 
 						<div class="block">
-							<h4>Food Tag</h4>
+							<h4>Tag Cloud</h4>
 							<div class="tag-link">
 								<a href="">BALLET</a>
+								<a href="">BLOG</a>
 								<a href="">CHRISTMAS</a>
 								<a href="">ELEGANCE</a>
 								<a href="">ELEGANT</a>
 								<a href="">SHOPPING</a>
 								<a href="">SHOP</a>
+								<a href="">PHOTOGRAPHY</a>
 							</div>	
-						</div>
+						</div>	<!-- End of /.block -->
+						
+					</div>	<!-- End of /.blog-sidebar -->
 				</div>	<!-- End of /.col-md-3 -->
-			
 			</div>	<!-- End of /.row -->
 		</div>	<!-- End of /.container -->
-	</section>	<!-- End of Section -->
-  
+	</section>	<!-- End of /#Blog -->
 
 
-	
 
-
-	
 
 
 

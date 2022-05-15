@@ -40,8 +40,8 @@ class DataBase:
             return None
 
     # Add to Foods with input (name, volume), and optinal arguments (calories, protein)
-    def add_to_foods(self, name, volume, calories=None, protein=None):
-        Foods(name=name, volume=volume, calories=calories, protein=protein).save()
+    def add_to_foods(self, name, type, calories=None, protein=None):
+        Foods(name=name, type=type, calories=calories, protein=protein).save()
         
     # Add to Fridge with input (user_id, food_id, volume)
     def add_to_fridge(self, uid, fid, volume):

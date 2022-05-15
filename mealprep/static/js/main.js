@@ -47,4 +47,10 @@ $(document).ready(function() {
 		$(this).tab('show')
 	})
 
+	// $('#bt').click( function() {
+	// 	// $.get('food', function (data) {
+	// 		alert($(this).parent().children('#srch')))
+	// 	// })
+	// });
+
 });

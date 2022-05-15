@@ -4,9 +4,12 @@ from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate
 from meals.Func.database import DataBase
+from meals.Func.recommender import Recommender
+from meals.models import Foods
+from django.core import serializers
 
 def index(request):
     user = request.user
@@ -78,3 +81,18 @@ def fridge(request):
     # print(fridge)
     # return [x.name for x in frige]
     return render(request, 'user/fridge.html', {'fridge': ingredients})
+
+
+def recepies(request):
+    db = DataBase()
+
+def food(request):
+    food = Foods.objects.all()
+    serialized_queryset = serializers.serialize('python', food)
+    return JsonResponse(serialized_queryset, safe=False)
+
+def recepies(request):
+
+    return render(request, 'user/recepies.html')
+    
+    
