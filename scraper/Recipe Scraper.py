@@ -1,14 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from fractions import Fraction
+from meals.Func.database import DataBase
 
-class Recipe:
-    def __init__(self, name, directions, ingredients, type, image):
-        self.name = name
-        self.directions = directions
-        self.ingredients = ingredients
-        self.type = type
-        self.image = image
+db = DataBase()
 
 def scrapeRecipePage(URL, type):
 
@@ -38,9 +33,13 @@ def scrapeRecipePage(URL, type):
     for ingredientUL in ingredientULs:
         ingredientLIs = ingredientUL.select('li:not(.recipe__list-subheading)')
         for ingredientLI in ingredientLIs:
-            quantityText = ingredientLI.find('span', {'class': 'recipe__list-qty'}).find('span').text.strip()
-            quantity = float(sum(Fraction(s) for s in quantityText.split()))
-            measurement = ingredientLI.find('span', {'class': 'recipe__list-qty'}).contents[2].strip().lower()
+            try:
+                quantityText = ingredientLI.find('span', {'class': 'recipe__list-qty'}).find('span').text.strip()
+                quantity = float(sum(Fraction(s) for s in quantityText.split()))
+                measurement = ingredientLI.find('span', {'class': 'recipe__list-qty'}).contents[2].strip().lower()
+            except:
+                quantity = ""
+                measurement = ""
             if measurement in cupList:
                 quantity = 128 * quantity
                 measurement = 'g'
@@ -77,18 +76,34 @@ def scrapeRecipePage(URL, type):
             elif measurement in quartList:
                 quantity = 940 * quantity
                 measurement = 'g'
-            quantity = round(quantity, 1)
+            if quantity is not "":
+                quantity = round(quantity, 1)
             ingredient = ingredientLI.contents[1]
             ingredientDict[ingredient] = (quantity, measurement)
 
     directions = soup.find('div', {'id': 'recipeDirectionsRoot'}).text.strip()
     directions = "".join([s for s in directions.splitlines(True) if s.strip("\r\n")])
 
-    return name, directions, type, ingredientDict
+    imgLink = soup.find('div', {'class': 'img'}).find('img')['data-pin-media']
+
+    db.add_to_recipes(name, directions, ingredientDict, type, imgLink)
 
 
+def scrapeRecipes(URL, type):
 
-print(scrapeRecipePage('https://food52.com/recipes/4560-goat-cheese-caesar-salad-with-roasted-tomatoes-and-parmesan-crisp','dinner'))
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    recipes = soup.find('div', {'class': 'recipe-results'}).findAll('div', {'class': 'card collectable'})
+    for recipe in recipes:
+        link ="https://food52.com" + recipe.find('a')['href'].strip()
+        scrapeRecipePage(link, type)
+
+
+scrapeRecipes('https://food52.com/recipes/breakfast', 'breakfast')
+scrapeRecipes('https://food52.com/recipes/lunch', 'lunch')
+scrapeRecipes('https://food52.com/recipes/dinner', 'dinner')
+scrapeRecipes('https://food52.com/recipes/salad', 'salad')
 
 
 
