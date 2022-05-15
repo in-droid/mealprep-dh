@@ -58,15 +58,14 @@
 						<div class="input-group">
 					    	<input placeholder="Search Here" type="text" class="form-control">
 					      	<span class="input-group-btn">
-					        	<a class="btn btn-default" href={% url 'search' %}></button>
+					        	<button class="btn btn-default" type="button"></button>
 					      	</span>
 					    </div><!-- /.input-group -->
 					</div><!-- /.search-box -->
 				</div>
 			</div> <!-- End Of /.row -->
 		</div>	<!-- End Of /.Container -->
-
-
+	</section>	
 
 	<!-- LOGO Start
     ================================================== -->
@@ -102,7 +101,7 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li ><a href="index.html">HOME</a></li>
+		        	<li  action="{ % url 'index' %}">HOME</li>
 					<li class="active"><a href="products.html">FRIŽIDER</a></li>
 					<li ><a href="blog.html">RECIPES</a></li>	
 		        </ul> <!-- End of /.nav-main -->
