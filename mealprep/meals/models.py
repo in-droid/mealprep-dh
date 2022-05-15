@@ -6,9 +6,10 @@ from django.contrib.auth.models import User
 class Foods(models.Model):
     # fid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
-    volume = models.IntegerField()
-    calories = models.IntegerField(null=True, blank=True)
-    protein = models.IntegerField(null=True, blank=True)
+    # volume = models.IntegerField()
+    type = models.CharField(max_length=256)
+    calories = models.FloatField(null=True, blank=True)
+    protein = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.name
