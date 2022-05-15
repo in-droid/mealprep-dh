@@ -1,3 +1,4 @@
+ {% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -64,8 +65,7 @@
 				</div>
 			</div> <!-- End Of /.row -->
 		</div>	<!-- End Of /.Container -->
-
-
+	</section>	
 
 	<!-- LOGO Start
     ================================================== -->
@@ -101,7 +101,7 @@
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav nav-main">
-		        	<li ><a href="index.html">HOME</a></li>
+		        	<li  action="{ % url 'index' %}">HOME</li>
 					<li class="active"><a href="products.html">FRIŽIDER</a></li>
 					<li ><a href="blog.html">RECIPES</a></li>	
 		        </ul> <!-- End of /.nav-main -->
@@ -128,97 +128,24 @@
 					</div>	<!-- End of /.Products-heading -->
 					<div class="product-grid">
 					    <ul>
-					        <li>
+					        {% for item in fridge %}
+								<li>
 					            <div class="products">
 									<a href="#">
 										<img src="images/product-image-8.jpg" alt="">
 									</a>
 									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
+										<h4>{{item.name}}</h4>
 									</a>
-									<p class="price">From: £69.99</p>
+									<p class="price"> Caloreies:{{item.calories}}</p>
+									<p class="price">Protienin:  {{item.proteins}}</p>
 									<div >
 										<a class="view-link shutter" href="#">
 										<i class="fa fa-plus-circle"></i>Add To Cart</a>
 									</div>
 								</div>	<!-- End of /.products -->
 					        </li>
-					        <li>
-					            <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
-									</a>
-									<p class="price">From: £69.99</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-					        <li>
-					            <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
-									</a>
-									<p class="price">From: £69.99</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-					        <li>
-					            <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
-									</a>
-									<p class="price">From: £69.99</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-					        <li>
-					            <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
-									</a>
-									<p class="price">From: £69.99</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-					        <li>
-					           <div class="products">
-									<a href="#">
-										<img src="images/product-image-8.jpg" alt="">
-									</a>
-									<a href="#">
-										<h4>Amazing Italian Sauces</h4>
-									</a>
-									<p class="price">From: £69.99</p>
-									<div >
-										<a class="view-link shutter" href="#">
-										<i class="fa fa-plus-circle"></i>Add To Cart</a>
-									</div>
-								</div>	<!-- End of /.products -->
-					        </li>
-					        <!--  ... -->
+							{% endfor %}
 					    </ul>
 					</div>	<!-- End of /.products-grid -->
 
@@ -314,6 +241,7 @@
 			</div>	<!-- End of /.row -->
 		</div>	<!-- End of /.container -->
 	</section>	<!-- End of Section -->
+  
 
 
 	
